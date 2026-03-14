@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3D Yes No Coin</title>
+
+<style>
+
+body{
+background:#1a1a1a;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+.scene{
+width:200px;
+height:200px;
+margin:80px auto;
+perspective:1000px;
+}
+
+.coin{
+width:100%;
+height:100%;
+position:relative;
+transform-style:preserve-3d;
+}
+
+.face{
+position:absolute;
+width:100%;
+height:100%;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+font-weight:bold;
+backface-visibility:hidden;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.front{
+background:linear-gradient(gold,#d4af37);
+}
+
+.back{
+background:linear-gradient(#ffb347,#ff8c00);
+transform:rotateY(180deg);
+}
+
+button{
+padding:12px 30px;
+font-size:18px;
+cursor:pointer;
+border:none;
+border-radius:8px;
+background:#00bfff;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>YES / NO COIN FLIP</h2>
+
+<div class="scene">
+<div class="coin" id="coin">
+
+<div class="face front">YES</div>
+<div class="face back">NO</div>
+
+</div>
+</div>
+
+<button onclick="flipCoin()">FLIP</button>
+
+<script>
+
+let coin=document.getElementById("coin");
+
+function flipCoin(){
+
+let flips=10+Math.floor(Math.random()*5);
+
+let result=Math.random()<0.5?0:180;
+
+let totalRotation=(flips*360)+result;
+
+coin.style.transition="transform 3s ease-out";
+coin.style.transform="rotateY("+totalRotation+"deg)";
+
+}
+
+</script>
+
+</body>
+</html>
